@@ -105,62 +105,7 @@
 
     <div>
       <h1>Reviews</h1>
-      <form>
-        <div class="">
-          
-          <div class="form-check form-check-inline">
-            <input
-              class="form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-              type="radio"
-              name="inlineRadioOptions"
-              id="inlineRadio1"
-              value="Recommended"
-              v-model="selectedOption"
-            />
-            <label
-              class="form-check-label inline-block text-gray-800"
-              for="inlineRadio10"
-              >Recommended</label
-            >
-          </div>
-          <div class="form-check form-check-inline">
-            <input
-              class="form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-[#b91c1c] checked:border-[#b91c1c]  focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-              type="radio"
-              name="inlineRadioOptions"
-              id="inlineRadio2"
-              value="Not Recommended"
-              v-model="selectedOption"
-            />
-            <label
-              class="form-check-label inline-block text-gray-800"
-              for="inlineRadio20"
-              >Not Recommended</label
-            >
-          </div>
-          <div class="form-check form-check-inline">
-            <input
-            class="form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-gray-800 checked:border-gray-800 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-              type="radio"
-              name="inlineRadio3"
-              id="inlineRadio3"
-              value="Mixed Feelings"
-              v-model="selectedOption"
-            />
-            <label
-              class="form-check-label inline-block text-gray-800"
-              for="inlineRadio30"
-              >Mixed Feelings</label
-            >
-          </div>
-        </div>
-      </form>
-      <div v-if="recommendations.length<1">
-        <p class="text-[#b91c1c] text-center text-[50px] pt-[20px]">
-          No Reviews
-        </p>
-      </div>
-      <div v-else v-for="review in filteredReviews">
+      <div v-for="review in recommendations.slice(0,3)">
         <reviews :review="review" />
       </div>
     </div>
@@ -171,21 +116,21 @@
   import axios from "axios";
   import Character from "../components/Character.vue";
   import reviews from "../components/reviews.vue";
-  import Picture from "../components/Picture.vue";
+
   export default {
     name: "DetalAnime",
     components: {
       Character,
       reviews,
-      Picture,
+  
     },
     data() {
       return {
         anime: [],
         charachters: [],
         recommendations: [],
-        selectedOption: null,
-        rec:[]
+        random:[],
+     
        
       };
     },
@@ -194,23 +139,18 @@
         return this.charachters.filter((x) => x.role === "Main");
       },
     },
-    computed:{
-      filteredReviews(){
-        return  this.recommendations.filter(x => x.tags[0] === this.selectedOption)
-      }
-    },
+    
     created() {
+      setTimeout(() => {
       axios
         .get(`https://api.jikan.moe/v4/anime/${this.$route.params.Aid}`)
         .then((response) => {
           this.anime = response.data.data;
+          console.log(this.anime)
         });
         axios
-        .get(`https://api.jikan.moe/v4/anime/${this.$route.params.Aid}/recommendations`)
-        .then((response) => {
-          this.rec = response.data.data;
-          console.log(this.rec)
-        });
+       
+        
       axios
         .get(
           `https://api.jikan.moe/v4/anime/${this.$route.params.Aid}/characters`
@@ -219,12 +159,13 @@
           this.charachters = response.data.data;
           
         });
+        
       axios
         .get(`https://api.jikan.moe/v4/anime/${this.$route.params.Aid}/reviews`)
         .then((response) => {
           this.recommendations = response.data.data;
-         
         });
+      }, 1000)
     },
   };
 </script>
