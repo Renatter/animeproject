@@ -129,7 +129,7 @@
         anime: [],
         charachters: [],
         recommendations: [],
-        random:[],
+       
      
        
       };
@@ -146,7 +146,7 @@
         .get(`https://api.jikan.moe/v4/anime/${this.$route.params.Aid}`)
         .then((response) => {
           this.anime = response.data.data;
-          console.log(this.anime)
+         
         });
         axios
        
@@ -157,6 +157,7 @@
         )
         .then((response) => {
           this.charachters = response.data.data;
+          console.log(this.charachters)
           
         });
         

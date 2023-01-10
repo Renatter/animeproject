@@ -6,6 +6,7 @@ import top100 from '../views/top100.vue';
 import Manga from '../views/Manga.vue';
 import Search from '../views/Search.vue'
 import DetalAnime from '../views/DetalAnime.vue'
+import DetalCaharcter from '../views/DetalCharcter.vue'
 
 
 const router = createRouter({
@@ -45,6 +46,12 @@ const router = createRouter({
             path: '/detalAnime/:Aid',
             name:'detalAnime',
             component:DetalAnime,
+            props: true,
+        },
+        {
+            path: '/detalCaharcter/:Cid',
+            name:'detalCaharcter',
+            component:DetalCaharcter,
             props: true,
         },
        
