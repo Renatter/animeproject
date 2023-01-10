@@ -1,7 +1,7 @@
 <template>
     <div>
       <h1>Аниме</h1>
-      <div class="flex justify-between">
+      <div class="flex">
         
           <div class="pr-[20px]" v-for="ani in anime.anime.slice(0,5)">
           <div>

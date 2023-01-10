@@ -4,7 +4,7 @@
     <div class="min-w-[900px]">
       <router-view></router-view>
     </div>
-    <News/>
+   
   </div>
   
  </template>

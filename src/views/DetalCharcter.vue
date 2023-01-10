@@ -1,6 +1,6 @@
 <template>
     <div>
-      <NameChar :name="character"/>
+      <NameChar :namex="character"/>
       <AnimeChar :anime="character"/>
       
       <MangaChar :manga="character" /> 
@@ -12,7 +12,6 @@
     import NameChar from '../components/СharDetail/NameChar.vue'
     import AnimeChar from "../components/СharDetail/AnimeChar.vue";
     import MangaChar from "../components/СharDetail/MangaChar.vue";
-;
     
     export default {
       name: "DetalAnime",
@@ -24,6 +23,7 @@
       data() {
         return {
           character: [],
+          news:[],
         };
       },
   
@@ -35,7 +35,15 @@
             )
             .then((response) => {
               this.character = response.data.data;
-              console.log(this.character);
+             
+            });
+            axios
+            .get(
+              `https://api.jikan.moe/v4/anime/1/news`
+            )
+            .then((response) => {
+              this.news = response.data.data;
+              console.log(this.news);
             });
         }, 1000);
       },

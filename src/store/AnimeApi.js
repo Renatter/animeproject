@@ -9,6 +9,7 @@ export const useAnimeApi = defineStore("AnimeApi ", ()=>{
     
     const animes = ref([])
     const characters = ref([])
+ 
 
     const allAnime = async()=>{
         const res = await fetch(`https://api.jikan.moe/v4/anime`)
@@ -23,6 +24,12 @@ export const useAnimeApi = defineStore("AnimeApi ", ()=>{
             console.log(data.data)
             animes.value = data.data;
     };
+    const getMangaSearch = async(search)=>{
+        const res = await fetch(`https://api.jikan.moe/v4/manga?q=${search}`)
+            const data = await res.json();
+            console.log(data.data)
+            animes.value = data.data;
+    }
 
     const getAiringAPI = async(num)=>{
             const res = await fetch(`https://api.jikan.moe/v4/top/anime?page=${num}`)
@@ -56,13 +63,14 @@ export const useAnimeApi = defineStore("AnimeApi ", ()=>{
         console.log(data.data)
         animes.value = data.data;
     }
-    const getCharactersAPI  = async(id)=>{
-        animelist.value = await fetch(`https://api.jikan.moe/v4/anime/${id}/characters`)
+ 
+    const Calendar  = async(day)=>{
+        animes.value = await fetch(`https://api.jikan.moe/v4/schedules?filter=${day}`)
         .then(data => data.json())
         .then(res => res.data)
-      console.log(animelist.value)
+      console.log(animes.value)
     }
     return{
-       getAnime, animes,getAiringAPI,getManga,pageAll,allAnime,animeStore,getAnimeById,getCharactersAPI,
+       getAnime, animes,getAiringAPI,getManga,pageAll,allAnime,animeStore,getAnimeById,getMangaSearch,Calendar
     }
 })

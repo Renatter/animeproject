@@ -7,6 +7,8 @@ import Manga from '../views/Manga.vue';
 import Search from '../views/Search.vue'
 import DetalAnime from '../views/DetalAnime.vue'
 import DetalCaharcter from '../views/DetalCharcter.vue'
+import DetalManga from '../views/DetalManga.vue';
+import AllCharacter from '../views/AllCharacter.vue'
 
 
 const router = createRouter({
@@ -52,6 +54,18 @@ const router = createRouter({
             path: '/detalCaharcter/:Cid',
             name:'detalCaharcter',
             component:DetalCaharcter,
+            props: true,
+        },
+        {
+            path: '/detalManga/:Mid',
+            name:'detalManga',
+            component:DetalManga,
+            props: true,
+        },
+        {
+            path: '/allCharacter/:Allid',
+            name:'allCharacter',
+            component:AllCharacter,
             props: true,
         },
        
