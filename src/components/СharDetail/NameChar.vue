@@ -36,7 +36,10 @@
 
           <div class="text-op px-[14px] pt-[25px]">
             <p>ОПИСАНИЕ</p>
-            <p>{{ namex.about.slice(0,430) }}</p>
+            <div v-if="namex.about">
+              <p>{{ namex.about.slice(0,430) }}</p>
+            </div>
+            <div v-else> NO about</div>
           </div>
         </div>
       </div>

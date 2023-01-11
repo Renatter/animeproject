@@ -80,6 +80,8 @@ import {useAnimeApi} from '../store/AnimeApi.js'
       { name: "wednesday" },
       { name: "thursday" },
       { name: "friday" },
+      { name: "saturday" },
+      { name: "Sunday" },
     ];
     const selectedPerson = ref(people[0].name);
     const now = new Date();

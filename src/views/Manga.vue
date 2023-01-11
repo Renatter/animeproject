@@ -25,15 +25,13 @@
 </template>
 
 <script setup>
-import { ref,watch } from 'vue';
+import { ref } from 'vue';
   import MangaCard from '../components/MangaCard.vue';
   import {useAnimeApi} from '../store/AnimeApi.js'
   const AnimeApi = useAnimeApi();
   const search = ref('')
 
-  watch(search, (newValue) => {
-  AnimeApi.getMangaSearch(newValue);
-    })
+
 </script>
 
 <style lang="scss" scoped>

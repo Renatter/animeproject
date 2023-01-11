@@ -21,13 +21,12 @@
                  {{ anime.authors[0].name }}
               </li>
               <li class="pt-[10px] flex">
+                <p class="text-[#475569]">Дата: </p>
+                 {{ anime.published.string }}
+              </li>
+              <li class="pt-[10px] flex">
                 <p class="text-[#475569]">Тома:</p>
                 {{ anime.volumes }}
-              </li>
-            
-              <li class="pt-[10px] flex">
-                <p class="text-[#475569]">Длительность эпизода:</p>
-                {{ anime.duration }}
               </li>
               <li class="pt-[10px] flex">
                 <p class="text-[#475569]">Статус:</p>
@@ -139,7 +138,7 @@
           .get(`https://api.jikan.moe/v4/manga/${this.$route.params.Mid}`)
           .then((response) => {
             this.anime = response.data.data;
-           
+           console.log(this.anime)
            
           });
           axios
